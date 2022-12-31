@@ -1,15 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    
+    <div className=''>
+      <div className="h-screen snap-start">
+        <h1 className="font-bold text-center text-xl mt-6">
+          Your Weekly Report
+        </h1>
+        <div className="font-bold text-center">
+          Dec 31, 2022
+        </div>
+      </div>
+
+   
+    </div>
   )
 }
 
 export default App
+
