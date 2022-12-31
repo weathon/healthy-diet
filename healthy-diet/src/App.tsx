@@ -33,6 +33,9 @@ async function signInWithGitHub() {
   })
 }
 
+async function signout() {
+  const { error } = await supabase.auth.signOut()
+}
 
 const App: React.FC = () => (
   <IonApp>
@@ -51,6 +54,20 @@ const App: React.FC = () => (
             <h3>Healthy Eating Tracker</h3>
             <IonButton color="dark" onClick={signInWithGitHub}>Login With GitHub</IonButton>
           </div>
+        </Route>
+        <Route exact path="/logout" render={()=>{
+          signout()
+          return         <div style={{
+            textAlign: "center", position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}>
+            <h3>You have been sign out</h3>
+            <IonButton color="dark" onClick={signInWithGitHub}>Re-login With GitHub</IonButton>
+          </div>
+        }}>
+          
         </Route>
         <Route exact path="/">
           <Redirect to="/home" />

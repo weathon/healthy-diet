@@ -40,7 +40,7 @@ const Home: React.FC = () => {
             <IonTitle size="large">Blank</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {/* <IonButton onClick={signout}>Log Out</IonButton> */}
+        
       </IonContent>
     </IonPage>
   );
