@@ -1,0 +1,7 @@
+{
+  "name": "healthy diet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
