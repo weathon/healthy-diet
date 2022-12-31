@@ -1,7 +1,8 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonButton, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonButton, IonHeader, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
+import { createClient } from '@supabase/supabase-js'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -24,9 +25,13 @@ import './theme/variables.css';
 
 setupIonicReact();
 
+const supabase = createClient('https://nfvkhbydxwxdvwecegxz.supabase.co', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5mdmtoYnlkeHd4ZHZ3ZWNlZ3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzI0NDc1ODEsImV4cCI6MTk4ODAyMzU4MX0.OXIQcWfvGtW28BNmKJ1JNwUeegxVIiNUn-9nPfvEU3Y")
 
-// Create a single supabase client for interacting with your database
-
+async function signInWithGitHub() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'github',
+  })
+}
 
 
 const App: React.FC = () => (
@@ -34,7 +39,18 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route exact path="/home">
-          <Home/>
+          <Home />
+        </Route>
+        <Route exact path="/login">
+          <div style={{
+            textAlign: "center", position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}>
+            <h3>Healthy Eating Tracker</h3>
+            <IonButton color="dark" onClick={signInWithGitHub}>Login With GitHub</IonButton>
+          </div>
         </Route>
         <Route exact path="/">
           <Redirect to="/home" />

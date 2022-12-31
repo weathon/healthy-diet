@@ -14,21 +14,19 @@ async function signout() {
   const { error } = await supabase.auth.signOut()
 }
 
-async function signInIfNot(){
+async function signInIfNot() {
   const res = await supabase.auth.getUser()
-  if(!res.data.user)
-  {
-    signInWithGitHub()
-    console.log("Loged in!")
-    return
+  if (!res.data.user) {
+    document.location = "/login"
   }
   console.log("Already logged in!")
 
 }
-
-signInIfNot();
+// signout()
 const Home: React.FC = () => {
   // supabase.auth.getUser() kouganotinthedoc
+  signInIfNot();
+
   return (
     <IonPage>
       <IonHeader>
