@@ -33,44 +33,13 @@ async function signInWithGitHub() {
     provider: 'github',
   })
 }
-function strmonth(m: number)
-{
-  return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][m] 
-}
 
-const classMap = {
-  "apple":"fruit",
-  "orange":"fruit",
-  "pizza":"fast food",
-  "buger":"fast food",
-  "rice":"neutral",
 
-};
-async function upload(foodName: string) {
-  console.log(foodName)
 
-  const user = await supabase.auth.getUser();
-  const now = new Date();
-  const { data, error } = await supabase
-    .from('main')
-    .insert([
-      {
-        username: user.data.user?.email,
-        date: `${strmonth(now.getMonth())} ${now.getDate()}, ${now.getFullYear()}}`,
-        time: now.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
-        //https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format 
-        foodName: foodName,
-        // @ts-ignore
-        foodClass: classMap[foodName],
-        img: "na"
-      },
-    ])
-  console.log(error)
-}
 async function signout() {
   const { error } = await supabase.auth.signOut()
 }
-upload("apple");
+// upload("apple"); kunyunekxunyunex
 
 const App: React.FC = () => (
   <IonApp>
@@ -94,9 +63,9 @@ const App: React.FC = () => (
             <IonButton color="dark" onClick={signInWithGitHub}>Login With GitHub</IonButton>
           </div>
         </Route>
-        <Route exact path="/logout" render={()=>{
+        <Route exact path="/logout" render={() => {
           signout()
-          return         <div style={{
+          return <div style={{
             textAlign: "center", position: "absolute",
             top: "50%",
             left: "50%",
@@ -106,7 +75,7 @@ const App: React.FC = () => (
             <IonButton color="dark" onClick={signInWithGitHub}>Re-login With GitHub</IonButton>
           </div>
         }}>
-          
+
         </Route>
         <Route exact path="/">
           <Redirect to="/home" />
