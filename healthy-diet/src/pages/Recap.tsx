@@ -46,7 +46,7 @@ async function uploadRandomData() {
 }
 // uploadRandomData()
 
-const Home: React.FC = () => {
+const Recap: React.FC = () => {
   const [myavt, setMyAvt] = useState(avt);
   const [mostCommonFood, setCF] = useState("-");
   const [mostCommonType, setCT] = useState("-");
@@ -217,4 +217,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Recap;
