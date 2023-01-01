@@ -1,0 +1,7 @@
+{
+  "name": "Food Classifier",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "faker": "^6.6.6",
+    "futura-font": "^1.0.0",
+    "react-chartjs-2": "^5.1.0",
+    "react-scripts": "5.0.1",
+    "twilio": "^3.84.0"
+  }
+}
