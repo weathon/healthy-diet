@@ -2,6 +2,7 @@ import { IonButton, IonButtons, IonMenuButton, IonCard, IonCardContent, IonCardH
 import ExploreContainer from '../components/ExploreContainer';
 import { add } from 'ionicons/icons';
 import './Home.css';
+import ImageUpload from "../components/Imageupload"
 
 const Home: React.FC = () => {
   return (
@@ -44,8 +45,13 @@ const Home: React.FC = () => {
 
 
         </IonContent>
+          
+       <input hidden id="uploader" type="file"/>
+  
         <IonFab slot="fixed" vertical="bottom" horizontal="end" style={{ marginRight: "15px", marginBottom: "10px" }}>
-          <IonFabButton>
+          <IonFabButton onClick={()=>{
+            document.getElementById("uploader")?.click()
+          }}>
             <IonIcon icon={add}></IonIcon>
           </IonFabButton>
         </IonFab>
