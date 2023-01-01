@@ -23,6 +23,23 @@ async function signInWithGitHub() {
   })
 }
 
+
+async function uploadRandomData() {
+  // tets only
+  const user = await supabase.auth.getUser();
+  const { data, error } = await supabase
+    .from('main')
+    .insert([
+      {username: user.data.user?.email,
+        date: "Dec 12, 2022",
+      time:"12:11:00 AM",
+      foodName:["Apple","Banana","Orange"][Math.round(Math.random()*100)%3],
+      foodClass:"Fruit",
+    "img":"na"},
+    ])
+}
+// uploadRandomData()
+
 const Home: React.FC = () => {
   const [myavt, setMyAvt] = useState(avt);
   async function signInIfNot() {
@@ -34,9 +51,9 @@ const Home: React.FC = () => {
     console.log("Already logged in!")
     setMyAvt(res.data.user?.user_metadata.avatar_url)
   }
-  
+
   signInIfNot();
-  
+
   return (
     <div
       style={{ backgroundColor: color1, height: "100%" }}>
@@ -47,40 +64,40 @@ const Home: React.FC = () => {
       </div>
 
       <div className="p-0 m-0 grid grid-rows-1 grid-cols-2">
-        <IonCard className="mt-7 mb-0 mr-1 drop-shadow-lg shadow-indigo-500/50" style={{ backgroundColor: color2}}>
+        <IonCard className="mt-7 mb-0 mr-1 drop-shadow-lg shadow-indigo-500/50" style={{ backgroundColor: color2 }}>
           <div className='m-3 my-5'>
-            <p className="font-bold text-2xl text-center" style={{color:color4}}>Apple</p>
-            <p className="text-base text-center" style={{color:color4}}>Most Common Food</p>
+            <p className="font-bold text-2xl text-center" style={{ color: color4 }}>Apple</p>
+            <p className="text-base text-center" style={{ color: color4 }}>Most Common Food</p>
           </div>
         </IonCard>
 
-        <IonCard className="mt-7 mb-0 ml-1 drop-shadow-lg shadow-indigo-500/50" style={{ backgroundColor: color2}}>
+        <IonCard className="mt-7 mb-0 ml-1 drop-shadow-lg shadow-indigo-500/50" style={{ backgroundColor: color2 }}>
           <div className='m-3 my-5'>
-            <p className="font-bold text-2xl text-center" style={{color:color4}}>Fruit</p>
-            <p className="text-base text-center" style={{color:color4}}>Most Common Type</p>
+            <p className="font-bold text-2xl text-center" style={{ color: color4 }}>Fruit</p>
+            <p className="text-base text-center" style={{ color: color4 }}>Most Common Type</p>
           </div>
         </IonCard>
       </div>
 
       <div className="p-0 m-0 grid grid-rows-1 grid-cols-3">
-        <IonCard className="mt-5 mb-0 mr-1 drop-shadow-lg shadow-indigo-500/50" style={{ backgroundColor: color5}}>
+        <IonCard className="mt-5 mb-0 mr-1 drop-shadow-lg shadow-indigo-500/50" style={{ backgroundColor: color5 }}>
           <div className='m-3 my-3'>
-            <p className="font-bold text-2xl text-center" style={{color:color1}}>20%</p>
-            <p className="text-base text-center" style={{color:color1}}>Unhealthy Food</p>
+            <p className="font-bold text-2xl text-center" style={{ color: color1 }}>20%</p>
+            <p className="text-base text-center" style={{ color: color1 }}>Unhealthy Food</p>
           </div>
         </IonCard>
 
-        <IonCard className="mt-5 mr-1 mb-0 ml-1 drop-shadow-lg shadow-indigo-500/50" style={{ backgroundColor: color5}}>
+        <IonCard className="mt-5 mr-1 mb-0 ml-1 drop-shadow-lg shadow-indigo-500/50" style={{ backgroundColor: color5 }}>
           <div className='m-3 my-3'>
-            <p className="font-bold text-2xl text-center" style={{color:color1}}>30%</p>
-            <p className="text-base text-center" style={{color:color1}}>Neutral<br/>Food</p>
+            <p className="font-bold text-2xl text-center" style={{ color: color1 }}>30%</p>
+            <p className="text-base text-center" style={{ color: color1 }}>Neutral<br />Food</p>
           </div>
         </IonCard>
 
-        <IonCard className="mt-5 mb-0 ml-1 drop-shadow-lg shadow-indigo-500/50" style={{ backgroundColor: color5}}>
+        <IonCard className="mt-5 mb-0 ml-1 drop-shadow-lg shadow-indigo-500/50" style={{ backgroundColor: color5 }}>
           <div className='m-3 my-3'>
-            <p className="font-bold text-2xl text-center" style={{color:color1}}>50%</p>
-            <p className="text-base text-center" style={{color:color1}}>Healthy Food</p>
+            <p className="font-bold text-2xl text-center" style={{ color: color1 }}>50%</p>
+            <p className="text-base text-center" style={{ color: color1 }}>Healthy Food</p>
           </div>
         </IonCard>
       </div>
