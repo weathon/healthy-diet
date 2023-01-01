@@ -151,7 +151,7 @@ const Home: React.FC = () => {
           formData.append("file", e.target.files![0]);
 
           const request = new XMLHttpRequest();
-          request.open("POST", "http://api.weasoft.com:9999/detect");
+          request.open("POST", "https://api.weasoft.com/detect");
           request.onreadystatechange = () => { // Call a function when the state changes.
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
               // Request finished. Do processing here.
