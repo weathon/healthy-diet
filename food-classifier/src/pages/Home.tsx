@@ -3,6 +3,7 @@ import ExploreContainer from '../components/ExploreContainer';
 import { add } from 'ionicons/icons';
 import './Home.css';
 import ImageUpload from "../components/Imageupload"
+import React from 'react';
 
 const Home: React.FC = () => {
   return (
@@ -43,13 +44,16 @@ const Home: React.FC = () => {
 
           </IonCard>
 
-
         </IonContent>
+
+        <input accept='image/*' hidden id="uploader" type="file" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { //type matters
+          console.log(e.target.files![0])
+          const url = URL.createObjectURL(e.target.files![0]);
           
-       <input hidden id="uploader" type="file"/>
-  
+        }} />
+
         <IonFab slot="fixed" vertical="bottom" horizontal="end" style={{ marginRight: "15px", marginBottom: "10px" }}>
-          <IonFabButton onClick={()=>{
+          <IonFabButton onClick={() => {
             document.getElementById("uploader")?.click()
           }}>
             <IonIcon icon={add}></IonIcon>
