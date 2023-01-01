@@ -35,7 +35,7 @@ async function signInWithGitHub() {
 }
 function strmonth(m: number)
 {
-  return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dev"][m] 
+  return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][m] 
 }
 
 const classMap = {
