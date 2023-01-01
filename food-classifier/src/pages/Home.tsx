@@ -7,10 +7,10 @@ import React from 'react';
 
 
 const colorList=[
-  "#453C67",
-  "#6D67E4",
-  "#46C2CB",
-  "#F2F7A1"
+  "rgb(6 182 212)",//4th
+  "rgb(180 83 9)",//1st
+  "rgb(249 115 22)",// 2nd
+  "rgb(34 197 94)"//3rd
 ];
 const Home: React.FC = () => {
   return (
@@ -45,11 +45,11 @@ const Home: React.FC = () => {
                 <IonCardTitle>Name</IonCardTitle>
               </IonCardHeader>
               <IonCardContent className="text-lg">
-                <b className="font-bold mb-1 inline-block">Type: </b> Fruit
+                <b className="font-bold mb-1 inline-block text-white"  >Type: </b> <span style={{color: 'rgb(249 250 251)'}} >Fruit</span> 
                 <br />
-                <b className="font-bold mb-1 inline-block">Date: </b> Dec 22, 2022
+                <b className="font-bold mb-1 inline-block text-white">Date: </b> <span style={{color: 'rgb(249 250 251)'}} > Dec 22, 2022 </span>
                 <br />
-                <b className="font-bold mb-1 inline-block">Time: </b> 12:10 AM
+                <b className="font-bold mb-1 inline-block text-white">Time: </b> <span style={{color: 'rgb(249 250 251)'}} >12:10 AM</span> 
               </IonCardContent>
             </IonCard>
           )}
