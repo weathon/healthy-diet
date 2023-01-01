@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "react-scripts": "5.0.1"
+  },
+  "dependencies": {
+    "twilio": "^3.84.0"
+  }
+}
