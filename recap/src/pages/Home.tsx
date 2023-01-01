@@ -98,9 +98,13 @@ const Home: React.FC = () => {
       // @ts-ignore 
       count_class[main[i].foodClass] += 1;
     }
-    U = U / (U + H + N) * 100;
-    H = H / (U + H + N) * 100;
-    N = N / (U + H + N) * 100;
+    console.log(H)
+    let U2 = U / (U + H + N) * 100;
+    let H2 = H / (U + H + N) * 100;
+    let N2 = N / (U + H + N) * 100;
+    U=U2;
+    H=H2;
+    N=N2;
     setUnhealthy(String(Math.round(U)) + "%");
     setHealthy(String(Math.round(H)) + "%");
     setNeutral(String(Math.round(N)) + "%"); 
@@ -130,7 +134,7 @@ const Home: React.FC = () => {
       }
     }
     setCT(maxN)
-    setScore(String(H/(U+H)*100))
+    setScore(String(Math.round(H/(U+H)*100)))
   }
   render()
   async function signInIfNot() {
