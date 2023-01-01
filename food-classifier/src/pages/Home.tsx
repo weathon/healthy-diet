@@ -23,9 +23,16 @@ const Home: React.FC = () => {
         </IonHeader>
         <IonContent className="ion-padding">
           <IonItem>
-            <IonLabel>Weekly Report</IonLabel>
+            <IonLabel onClick={
+            ()=>{
+                document.location = "/recap"
+            }}>Weekly Report</IonLabel>
           </IonItem>
-          <IonButton color="danger" expand="block"        >Log Out</IonButton>
+          <IonButton color="danger" expand="block" onClick={
+            ()=>{
+                document.location = "/logout"
+            }
+          }>Log Out</IonButton>
         </IonContent>
       </IonMenu>
       <IonPage id="main-content">
