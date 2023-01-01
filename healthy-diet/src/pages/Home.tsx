@@ -47,6 +47,8 @@ const classMap = {
   "rice": "neutral",
 
 };
+
+const reversedClassMapping=["pizza","rice","buger","orange","apple"];
 async function upload(foodName: string) {
   console.log(foodName)
 
@@ -85,7 +87,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     fetchData();
     signInIfNot();
-  },[])
+  }, [])
   return (
     <>
       <IonMenu contentId="main-content">
@@ -142,12 +144,32 @@ const Home: React.FC = () => {
           console.log(e.target.files![0])
           const url = URL.createObjectURL(e.target.files![0]);
           // HappieEE123/Project_310
+          const formData = new FormData();
+          //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+
+          // HTML file input, chosen by user
+          formData.append("file", e.target.files![0]);
+
+          const request = new XMLHttpRequest();
+          request.open("POST", "http://api.weasoft.com:9999/detect");
+          request.onreadystatechange = () => { // Call a function when the state changes.
+            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+              // Request finished. Do processing here.
+              console.log(request.response)
+              upload(reversedClassMapping[request.response]);
+
+
+            }
+          }
+          //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+          request.send(formData);
+
+
         }} />
 
         <IonFab slot="fixed" vertical="bottom" horizontal="end" style={{ marginRight: "15px", marginBottom: "10px" }}>
           <IonFabButton onClick={() => {
             document.getElementById("uploader")?.click();
-            upload("apple");
           }}>
             <IonIcon icon={add}></IonIcon>
           </IonFabButton>
