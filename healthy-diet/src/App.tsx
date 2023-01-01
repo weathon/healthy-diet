@@ -2,6 +2,7 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonButton, IonHeader, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
+import Recap from './pages/Recap';
 import { createClient } from '@supabase/supabase-js'
 
 /* Core CSS required for Ionic components to work properly */
@@ -43,6 +44,10 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route exact path="/home">
           <Home />
+        </Route>
+
+        <Route exact path="/recap">
+          <Recap />
         </Route>
         <Route exact path="/login">
           <div style={{
