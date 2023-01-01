@@ -156,6 +156,7 @@ const Home: React.FC = () => {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
               // Request finished. Do processing here.
               console.log(request.response)
+              alert(`It is ${reversedClassMapping[request.response]}`)
               upload(reversedClassMapping[request.response]);
 
 
