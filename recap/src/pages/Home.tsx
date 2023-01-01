@@ -45,13 +45,7 @@ async function uploadRandomData() {
     ])
 }
 // uploadRandomData()
-async function render() {
-  let { data: main, error } = await supabase
-    .from('main')
-    .select('username')
 
-  console.log(main)
-}
 const Home: React.FC = () => {
   const [myavt, setMyAvt] = useState(avt);
   const [mostCommonFood, setCF] = useState("-");
@@ -60,7 +54,84 @@ const Home: React.FC = () => {
   const [neutral, setNeutral] = useState("0%");
   const [unhealthy, setUnhealthy] = useState("0%");
   const [score, setScore] = useState("0");
+  async function render() {
+    let { data: main, error } = await supabase
+      .from('main')
+      .select('*')
+    const mapping = {
+      "orange": "H",
+      "apple": "H",
+      "pizza": "U",
+      "buger": "U",
+      "rice": "N"
+    }
+    let count = {
+      "orange": 0,
+      "apple": 0,
+      "pizza": 0,
+      "buger": 0,
+      "rice": 0,
+    }
+    let count_class = {
+      "fruit": 0,
+      "fast food": 0,
+      "starch": 0
+    }
+    console.log(main)
+    const l = main?.length ?? 0;
+    let U = 0;
+    let N = 0;
+    let H = 0;
+    let tmp;
+    for (let i = 0; i < l; i++) {
+      // @ts-ignore 
+      if (mapping[main[i].foodName] == "U")
+        U += 1
+      // @ts-ignore 
+      if (mapping[main[i].foodName] == "H")
+        H += 1
+      // @ts-ignore 
+      if (mapping[main[i].foodName] == "N")
+        N += 1
+      // @ts-ignore 
+      count[main[i].foodName] += 1;
+      // @ts-ignore 
+      count_class[main[i].foodClass] += 1;
+    }
+    U = U / (U + H + N) * 100;
+    H = H / (U + H + N) * 100;
+    N = N / (U + H + N) * 100;
+    setUnhealthy(String(Math.round(U)) + "%");
+    setHealthy(String(Math.round(H)) + "%");
+    setNeutral(String(Math.round(N)) + "%"); 
+    let maxV = 0
+    let maxN = Object.keys(count)[0]
+    for (let i = 0; i < Object.keys(count).length; i++)
+    {
+      // @ts-ignore 
+      if(count[Object.keys(count)[i]]>maxV){
+      // @ts-ignore 
+        maxV = count[Object.keys(count)[i]];
+        maxN = Object.keys(count)[i];
+      }
+    }
+    setCF(maxN)
 
+
+    maxV = 0
+    maxN = Object.keys(count_class)[0]
+    for (let i = 0; i < Object.keys(count_class).length; i++)
+    {
+      // @ts-ignore 
+      if(count_class[Object.keys(count_class)[i]]>maxV){
+      // @ts-ignore 
+        maxV = count_class[Object.keys(count_class)[i]];
+        maxN = Object.keys(count_class)[i];
+      }
+    }
+    setCT(maxN)
+    setScore(String(H/(U+H)*100))
+  }
   render()
   async function signInIfNot() {
     const res = await supabase.auth.getUser()
