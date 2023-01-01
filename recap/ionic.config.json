@@ -1,0 +1,7 @@
+{
+  "name": "recap",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
